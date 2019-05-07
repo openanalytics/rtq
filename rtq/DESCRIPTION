@@ -8,8 +8,8 @@ Maintainer: Daan Seynaeve <daan.seynaeve@openanalytics.eu>
 Description: S3 generics for a reliable task queue interface based on leases.
     A reference implementation in Redis is provided.
 Imports:
-  jsonlite
-  redux
-  uuid
+  jsonlite,
+  redux,
+  uuid,
   digest
 License: Apache 2.0 + file LICENSE
