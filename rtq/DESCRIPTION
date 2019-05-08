@@ -1,10 +1,18 @@
 Package: rtq
 Type: Package
-Title: Lighweight Reliable Task Queue
-Version: 0.0.1
-Date: 2019-05-07
+Title: Lightweight Reliable Task Queue
+Version: 0.1.0
+Date: 2019-05-08
 Author: Daan Seynaeve
 Maintainer: Daan Seynaeve <daan.seynaeve@openanalytics.eu>
 Description: S3 generics for a reliable task queue interface based on leases.
     A reference implementation in Redis is provided.
+Imports:
+  jsonlite,
+  redux,
+  uuid,
+  digest
+Suggests:
+  testthat
 License: Apache 2.0 + file LICENSE
+RoxygenNote: 6.1.1.9000

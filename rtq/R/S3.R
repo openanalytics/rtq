@@ -17,8 +17,7 @@ leaseTask <- function(
     tq,
     blocking,
     blockTimeout,
-    leaseTimeout,
-    ...) {
+    leaseTimeout) {
   
   UseMethod("leaseTask")
   
@@ -26,7 +25,7 @@ leaseTask <- function(
 #' Lightweight Reliable Task Queue - Stop processing a task item
 #' @rdname completeTask
 #' @param tq Task Queue
-#' @param item item obtained from \code{\link{lease}}
+#' @param item item obtained from \code{\link{leaseTask}}
 #' @seealso \code{\link{leaseTask}} \code{\link{completeTask}} \code{\link{createTask}}
 #' @export
 completeTask <- function(tq, item) {
