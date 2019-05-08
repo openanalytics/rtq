@@ -22,6 +22,7 @@ pipeline {
     post {
         always {
             archiveArtifacts artifacts: '*.tar.gz, *.pdf', fingerprint: true
+            junit '*/*.Rcheck/tests/results.xml'
         }
     }
 }
