@@ -1,6 +1,6 @@
 Package: rtq
 Type: Package
-Title: Lighweight Reliable Task Queue
+Title: Lightweight Reliable Task Queue
 Version: 0.0.1
 Date: 2019-05-07
 Author: Daan Seynaeve
@@ -12,4 +12,7 @@ Imports:
   redux,
   uuid,
   digest
+Suggests:
+  testthat
 License: Apache 2.0 + file LICENSE
+RoxygenNote: 6.1.1.9000
