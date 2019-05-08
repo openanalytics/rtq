@@ -9,8 +9,8 @@ pipeline {
     stages {
         stage('Build') {
             agent {
-                docker {
-                    image 'registry.openanalytics.eu/private/packamon'
+                dockerfile {
+                    filename 'Dockerfile.build'
                     reuseNode true
                 }
             }

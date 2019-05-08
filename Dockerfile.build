@@ -1,0 +1,8 @@
+FROM registry.openanalytics.eu/private/packamon
+
+LABEL maintainer="daan.seynaeve@openanalytics.eu"
+
+RUN apt-get update -y && apt-get --no-install-recommends install -y \
+    libhiredis-dev \
+    && rm -rf /var/lib/apt/lists/*
+    
