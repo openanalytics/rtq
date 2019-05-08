@@ -1,8 +1,11 @@
 
 #' Lightweight Reliable Task Queue (Redis implementation)
 #' @description A simple reliable task queue implemented via two lists
+#' @param redisConf as returned from \code{\link[redux]{redis_config}}
+#' @param name name of the queue. Used as a prefix to all redis keys.
 #' @seealso https://kubernetes.io/examples/application/job/redis/rediswq.py
 #' @import redux
+#' @importFrom uuid UUIDgenerate
 #' @seealso \code{\link{leaseTask}} \code{\link{completeTask}} \code{\link{createTask}}
 #' @export
 RedisTQ <- function(redisConf, name) {
@@ -21,6 +24,7 @@ RedisTQ <- function(redisConf, name) {
 #' @rdname leaseTask
 #' @import redux
 #' @seealso \code{\link{RedisTQ}}
+#' @importFrom digest digest
 #' @export
 leaseTask.RedisTQ <- function(
     tq,
