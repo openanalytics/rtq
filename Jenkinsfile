@@ -15,7 +15,6 @@ pipeline {
                 }
             }
             steps {
-                sh 'apt install libhiredis-dev'
                 sh '/usr/local/bin/packamon.sh'
             }
         }
