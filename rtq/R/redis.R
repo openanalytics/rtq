@@ -2,7 +2,11 @@
 #' Lightweight Reliable Task Queue (Redis implementation)
 #' @description A simple reliable task queue implemented via two lists
 #' @param redisConf as returned from \code{\link[redux]{redis_config}}
-#' @param name name of the queue. Used as a prefix to all redis keys.
+#' @param name name of the queue. Used as a namespace for all used redis
+#' keys to avoid key collisions.
+#' @return an object of class \code{RedisTQ}
+#' @details Key hash tags are used to ensure that the main and processing
+#' queues run on the same redis shard in a clustered environment.
 #' @seealso https://kubernetes.io/examples/application/job/redis/rediswq.py
 #' @import redux
 #' @importFrom uuid UUIDgenerate
@@ -13,8 +17,8 @@ RedisTQ <- function(redisConf, name) {
   structure(
       list(
           redisConf = redisConf,
-          mainQKey = paste0(name, ":", "main"),
-          procQKey = paste0(name, ":", "processing"),
+          mainQKey = sprintf("{%s}:main", name),
+          procQKey = sprintf("{%s}:processing", name),
           leasePrefix = paste0(name, ":lease:"),
           sessionId = UUIDgenerate()
       ), class = c("RedisTQ", "TQ", "list")
