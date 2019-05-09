@@ -1,3 +1,3 @@
-## rtq 0.0.1
+## rtq 0.1.0
 
-* initial commit
+* initial version
