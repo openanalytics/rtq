@@ -101,3 +101,17 @@ existsTask.RedisTQ <- function(tq) {
   r$LLEN(tq$mainQKey) > 0
   
 }
+#' @rdname listTasks
+#' @import redux
+#' @seealso \code{\link{RedisTQ}}
+#' @export 
+listTasks.RedisTQ <- function(tq) {
+
+  r <- hiredis(tq$redisConf)
+  
+  list(
+      "main" = r$LRANGE(tq$mainQKey, 0, -1),
+      "proc" = r$LRANGE(tq$procQKey, 0, -1))
+  
+}
+
