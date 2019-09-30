@@ -62,7 +62,7 @@ completeTask.RedisTQ <- function(
   r <- hiredis(tq$redisConf)
   
   r$LREM(tq$procQKey, 0, item)
-  r$DEL(digest(item, algo = "sha256"))
+  r$DEL(paste0(tq$leasePrefix, digest(item, algo = "sha256")))
   
   invisible()
   
