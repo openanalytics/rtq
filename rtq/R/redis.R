@@ -4,21 +4,26 @@
 #' @param redisConf as returned from \code{\link[redux]{redis_config}}
 #' @param name name of the queue. Used as a namespace for all used redis
 #' keys to avoid key collisions.
+#' @param autoHashTags auto-apply hash tags to queue keys
 #' @return an object of class \code{RedisTQ}
 #' @details Key hash tags are used to ensure that the main and processing
 #' queues run on the same redis shard in a clustered environment.
+#' (see \link{https://redis.io/topics/cluster-spec} for more info about this topic)
+#' Set \code{autoHashTags} to \code{FALSE} to disable this behavior. 
 #' @seealso https://kubernetes.io/examples/application/job/redis/rediswq.py
 #' @import redux
 #' @importFrom uuid UUIDgenerate
 #' @seealso \code{\link{leaseTask}} \code{\link{completeTask}} \code{\link{createTask}}
 #' @export
-RedisTQ <- function(redisConf, name) {
+RedisTQ <- function(redisConf, name, autoHashTags = TRUE) {
+  
+  qPrefix <- if (isTRUE(autoHashTags)) sprintf("{%s}", name) else name
   
   structure(
       list(
           redisConf = redisConf,
-          mainQKey = sprintf("{%s}:main", name),
-          procQKey = sprintf("{%s}:processing", name),
+          mainQKey = paste0(qPrefix, ":main"),
+          procQKey = paste0(qPrefix, ":processing"),
           leasePrefix = paste0(name, ":lease:"),
           sessionId = UUIDgenerate()
       ), class = c("RedisTQ", "TQ", "list")
