@@ -15,7 +15,7 @@
 #' @importFrom uuid UUIDgenerate
 #' @seealso \code{\link{leaseTask}} \code{\link{completeTask}} \code{\link{createTask}}
 #' @export
-RedisTQ <- function(redisConf, name, autoHashTags = TRUE) {
+RedisTQ <- function(redisConf, name, autoHashTags = FALSE) {
   
   qPrefix <- if (isTRUE(autoHashTags)) sprintf("{%s}", name) else name
   
