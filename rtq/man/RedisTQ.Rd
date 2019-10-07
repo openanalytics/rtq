@@ -9,10 +9,18 @@ RedisTQ(redisConf, name)
 \arguments{
 \item{redisConf}{as returned from \code{\link[redux]{redis_config}}}
 
-\item{name}{name of the queue. Used as a prefix to all redis keys.}
+\item{name}{name of the queue. Used as a namespace for all used redis
+keys to avoid key collisions.}
+}
+\value{
+an object of class \code{RedisTQ}
 }
 \description{
 A simple reliable task queue implemented via two lists
+}
+\details{
+Key hash tags are used to ensure that the main and processing
+queues run on the same redis shard in a clustered environment.
 }
 \seealso{
 https://kubernetes.io/examples/application/job/redis/rediswq.py

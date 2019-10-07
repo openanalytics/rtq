@@ -54,3 +54,14 @@ existsTask <- function(tq) {
   UseMethod("existsTask")
   
 }
+#' Lightweight Reliable Task Queue - List Tasks
+#' @rdname listTasks
+#' @param tq Task Queue
+#' @seealso \code{\link{leaseTask}} \code{\link{completeTask}} \code{\link{createTask}}
+#' \code{\link{existsTask}}
+#' @export 
+listTasks <- function(tq) {
+  
+  UseMethod("listTasks")
+  
+}

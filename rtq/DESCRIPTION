@@ -1,7 +1,7 @@
 Package: rtq
 Type: Package
 Title: Lightweight Reliable Task Queue
-Version: 0.1.0
+Version: 0.1.1
 Date: 2019-05-08
 Author: Daan Seynaeve
 Maintainer: Daan Seynaeve <daan.seynaeve@openanalytics.eu>
